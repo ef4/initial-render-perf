@@ -1,5 +1,11 @@
+<h1>Testing on Ember {{emberVersion}} {{#if isProdBuild}}Production{{else}}Dev{{/if}} Build</h1>
+
 <button {{action "runOneTest"}}>
   Render Once
+</button>
+
+<button {{action "renderMany"}}>
+  Render {{manyTimes}} Times
 </button>
 
 <button {{action "clear"}}>
@@ -9,6 +15,9 @@
 {{#each timings as |ms|}}
   <div>Render took {{ms}}ms</div>
 {{/each}}
+{{#if stats}}
+  <div>Mean: {{stats.mean}}ms</div>
+{{/if}}
 
 {{#if showList}}
   {{complex-items listItems=listItems}}
