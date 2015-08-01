@@ -1,3 +1,15 @@
-<h2 id="title">Welcome to Ember.js</h2>
+<button {{action "runOneTest"}}>
+  Render Once
+</button>
 
-{{outlet}}
+<button {{action "clear"}}>
+  Clear
+</button>
+
+{{#each timings as |ms|}}
+  <div>Render took {{ms}}ms</div>
+{{/each}}
+
+{{#if showList}}
+  {{complex-items listItems=listItems}}
+{{/if}}

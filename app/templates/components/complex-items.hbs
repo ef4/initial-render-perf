@@ -1,0 +1,8 @@
+<ul>
+  {{#each listItems as |item|}}
+    <li>{{simple-component data=item.a}} {{simple-component data=item.b}} {{simple-component data=item.c}} {{simple-component data=item.d}}</li>
+    <li>{{simple-component data=item.a}} {{simple-component data=item.b}} {{simple-component data=item.c}} {{simple-component data=item.d}}</li>
+    <li>{{component-render a=item.a b=item.b c=item.c d=item.d}}</li>
+    <li>{{component-render a=item.a b=item.b c=item.c d=item.d}}</li>
+  {{/each}}
+</ul>
