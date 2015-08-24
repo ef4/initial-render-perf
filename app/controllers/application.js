@@ -24,6 +24,7 @@ export default Ember.Controller.extend({
   showList: false,
   timings: [],
   manyTimes: 10,
+  fixedDuration: 10,
   emberVersion: Ember.VERSION,
 
   isProdBuild: Ember.computed(function() {
@@ -41,7 +42,7 @@ export default Ember.Controller.extend({
       return null;
     }
     return {
-      mean: Math.floor(timings.reduce((a,b) => a + b) / timings.length)
+      mean: Math.floor(timings.reduce((a,b) => a + b.ms, 0) / timings.length)
     };
   }),
 
@@ -56,7 +57,7 @@ export default Ember.Controller.extend({
       this.set('showList', true);
       return waitForRender().then(() => {
         let ms = (new Date()) - startTime;
-        this.get('timings').pushObject(ms);
+        this.get('timings').pushObject({ ms });
       });
     });
   },
@@ -73,6 +74,15 @@ export default Ember.Controller.extend({
       let counter = this.get('manyTimes');
       let step = () => this.runTest().then(() => {
         if (--counter > 0) {
+          return step();
+        }
+      });
+      return step();
+    },
+    renderFixed() {
+      let endAt = new Date().getTime() + this.get('fixedDuration')*1000;
+      let step = () => this.runTest().then(() => {
+        if (new Date() < endAt) {
           return step();
         }
       });

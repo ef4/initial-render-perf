@@ -8,12 +8,17 @@
   Render {{manyTimes}} Times
 </button>
 
+<button {{action "renderFixed"}}>
+  Render For {{fixedDuration}} Seconds
+</button>
+
+
 <button {{action "clear"}}>
   Clear
 </button>
 
-{{#each timings as |ms|}}
-  <div>Render took {{ms}}ms</div>
+{{#each timings as |t|}}
+  <div>Render took {{t.ms}}ms</div>
 {{/each}}
 {{#if stats}}
   <div>Mean: {{stats.mean}}ms</div>
