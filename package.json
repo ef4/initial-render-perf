@@ -33,7 +33,7 @@
     "ember-cli-selenium": "^0.1.1",
     "ember-cli-uglify": "^1.0.1",
     "ember-disable-proxy-controllers": "^1.0.0",
-    "ember-perf": "0.0.11",
+    "ember-perf": "0.0.12",
     "express": "^4.13.3",
     "rsvp": "^3.1.0"
   }
