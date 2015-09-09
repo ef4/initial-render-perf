@@ -1,14 +1,14 @@
 <h1>Testing on Ember {{emberVersion}} {{#if isProdBuild}}Production{{else}}Dev{{/if}} Build</h1>
 
-<button {{action "runOneTest"}}>
+<button class="run-one" {{action "runOneTest"}}>
   Render Once
 </button>
 
-<button {{action "renderMany"}}>
+<button class="run-many" {{action "renderMany"}}>
   Render {{manyTimes}} Times
 </button>
 
-<button {{action "renderFixed"}}>
+<button class="run-fixed-duration" {{action "renderFixed"}}>
   Render For {{fixedDuration}} Seconds
 </button>
 
@@ -21,7 +21,7 @@
   <div>Render took {{t.ms}}ms</div>
 {{/each}}
 {{#if stats}}
-  <div>Mean: {{stats.mean}}ms</div>
+  <div class="result">Mean: {{stats.mean}}ms</div>
 {{/if}}
 
 {{#if showList}}

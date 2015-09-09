@@ -26,6 +26,7 @@ export default Ember.Controller.extend({
   manyTimes: 10,
   fixedDuration: 10,
   emberVersion: Ember.VERSION,
+  emberPerf: Ember.inject.service(),
 
   isProdBuild: Ember.computed(function() {
     try {
@@ -52,14 +53,16 @@ export default Ember.Controller.extend({
   },
 
   runTest() {
+    let emberPerf = this.get('emberPerf');
+
     return this.resetTest().then(() => {
-      let startTime = new Date();
       this.set('showList', true);
-      return waitForRender().then(() => {
-        let ms = (new Date()) - startTime;
-        this.get('timings').pushObject({ ms });
+
+      return emberPerf.measureRender();
+    })
+      .then((results) => {
+        this.get('timings').pushObject({ ms: results.elapsedTime });
       });
-    });
   },
 
   actions: {
